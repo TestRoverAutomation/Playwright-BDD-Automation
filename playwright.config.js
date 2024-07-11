@@ -39,16 +39,16 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     // Setup projects for specific files
-    { name: 'adminsetup', testDir: './', testMatch: [/auth\/.*adminauthsetup\.js$/] },
-    { name: 'testsetup', testDir: './', testMatch: [/auth\/.*testauthsetup\.js$/] },
+  //  { name: 'adminsetup', testDir: './', testMatch: [/auth\/.*adminauthsetup\.js$/] },
+ //   { name: 'testsetup', testDir: './', testMatch: [/auth\/.*testauthsetup\.js$/] },
     { name: 'usersetup', testDir: './', testMatch: [/auth\/.*userauthsetup\.js$/] },
 
     // Main testing projects
-    {
-      name: 'admin',
-      use: { ...devices['Desktop Chrome'], storageState: 'playwright/.auth/admin.json' },
-      dependencies: ['adminsetup'],
-    },
+    // {
+    //   name: 'admin',
+    //   use: { ...devices['Desktop Chrome'], storageState: 'playwright/.auth/admin.json' },
+    //   dependencies: ['adminsetup'],
+    // },
     {
       name: 'user',
       use: { ...devices['Desktop Chrome'],
@@ -56,11 +56,11 @@ export default defineConfig({
       },
        dependencies: ['usersetup'],
     },
-    {
-      name: 'test',
-      use: { ...devices['Desktop Chrome'], storageState: 'playwright/.auth/test.json' },
-      dependencies: ['testsetup'],
-    },
+    // {
+    //   name: 'test',
+    //   use: { ...devices['Desktop Chrome'], storageState: 'playwright/.auth/test.json' },
+    //   dependencies: ['testsetup'],
+    // },
 
     // Uncomment the following sections if you want to include more browser testing
     // {
