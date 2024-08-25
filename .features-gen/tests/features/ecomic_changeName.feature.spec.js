@@ -19,10 +19,11 @@ test.describe("Change First Name and Last name", () => {
 
 test.use({
   $test: ({}, use) => use(test),
-  $testMetaMap: ({}, use) => use(testMetaMap),
   $uri: ({}, use) => use("tests\\features\\ecomic_changeName.feature"),
+  $bddFileMeta: ({}, use) => use(bddFileMeta),
+  $scenarioHookFixtures: ({ browser }, use) => use({ browser }),
 });
 
-const testMetaMap = {
+const bddFileMeta = {
   "Verify user can update account information successfully": {"pickleLocation":"4:2"},
 };

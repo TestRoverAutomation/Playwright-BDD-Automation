@@ -19,11 +19,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@cucumber/cucumber": "^10.3.2",
     "@playwright/test": "^1.42.1",
     "@types/node": "^20.11.30",
     "cross-env": "^7.0.3",
     "dotenv": "^16.4.5",
-    "playwright-bdd": "^6.0.3"
+    "playwright-bdd": "^7.2.2"
   }
 }

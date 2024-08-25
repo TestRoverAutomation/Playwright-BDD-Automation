@@ -3,10 +3,15 @@ import { defineConfig, devices } from '@playwright/test';
 import { defineBddConfig } from 'playwright-bdd';
 import dotenv from 'dotenv';
 
+// const testDir = defineBddConfig({
+//   importTestFrom: 'tests/fixtures/fixture.js',
+//   paths: ['tests/features/***.feature'],
+//   require: ['tests/steps/***steps.js']
+// });
+
 const testDir = defineBddConfig({
-  importTestFrom: 'tests/fixtures/fixture.js',
-  paths: ['tests/features/***.feature'],
-  require: ['tests/steps/***steps.js']
+  features: 'tests/features/***.feature',
+  steps: ['tests/steps/***steps.js', 'tests/fixtures/fixture.js' ]
 });
 
 dotenv.config({

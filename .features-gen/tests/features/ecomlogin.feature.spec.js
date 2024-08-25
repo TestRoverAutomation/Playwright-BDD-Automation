@@ -67,11 +67,12 @@ test.describe("Verify login", () => {
 
 test.use({
   $test: ({}, use) => use(test),
-  $testMetaMap: ({}, use) => use(testMetaMap),
   $uri: ({}, use) => use("tests\\features\\ecomlogin.feature"),
+  $bddFileMeta: ({}, use) => use(bddFileMeta),
+  $scenarioHookFixtures: ({ browser }, use) => use({ browser }),
 });
 
-const testMetaMap = {
+const bddFileMeta = {
   "Verify user is able to login with valid credentials": {"pickleLocation":"7:2"},
   "Verify user is not able login with following credentails|Example #1": {"pickleLocation":"24:3"},
   "Verify user is not able login with following credentails|Example #2": {"pickleLocation":"25:3"},

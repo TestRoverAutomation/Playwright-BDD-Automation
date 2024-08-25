@@ -1,3 +1,4 @@
 {
-    "circleci.persistedProjectSelection": []
+    "cucumberautocomplete.steps": ["tests/steps/*.js"]
+    
 }
