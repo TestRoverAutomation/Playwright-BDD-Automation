@@ -11,7 +11,7 @@ import dotenv from 'dotenv';
 
 const testDir = defineBddConfig({
   features: 'tests/features/***.feature',
-  steps: ['tests/steps/***steps.js', 'tests/fixtures/fixture.js' ]
+  steps: ['tests/steps/***steps.js', 'tests/fixtures/fixture.js', "tests/hooks/hooks.js" ]
 });
 
 dotenv.config({
