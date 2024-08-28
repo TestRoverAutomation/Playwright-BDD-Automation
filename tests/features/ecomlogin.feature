@@ -1,3 +1,4 @@
+@login
 Feature: Verify login
 
     Feature Description

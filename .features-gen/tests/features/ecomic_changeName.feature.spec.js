@@ -3,7 +3,7 @@ import { test } from "../../../tests/fixtures/fixture.js";
 
 test.describe("Change First Name and Last name", () => {
 
-  test("Verify user can update account information successfully", async ({ Given, page, And, ecomLoginPage, When, ecomChangePage, Then }) => {
+  test("Verify user can update account information successfully", { tag: ["@changename"] }, async ({ Given, page, And, ecomLoginPage, When, ecomChangePage, Then }) => {
     await Given("I navigate to my account \"https://ecommerce-playground.lambdatest.io/\"", null, { page });
     await And("I click on My account", null, { ecomLoginPage });
     await When("I click on Edit your account information", null, { page, ecomChangePage });
@@ -21,9 +21,8 @@ test.use({
   $test: ({}, use) => use(test),
   $uri: ({}, use) => use("tests\\features\\ecomic_changeName.feature"),
   $bddFileMeta: ({}, use) => use(bddFileMeta),
-  $scenarioHookFixtures: ({ browser }, use) => use({ browser }),
 });
 
 const bddFileMeta = {
-  "Verify user can update account information successfully": {"pickleLocation":"4:2"},
+  "Verify user can update account information successfully": {"pickleLocation":"5:2","tags":["@changename"]},
 };

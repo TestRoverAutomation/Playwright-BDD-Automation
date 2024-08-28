@@ -1,3 +1,4 @@
+@changename
 Feature: Change First Name and Last name 
 
     User is able to change the First name and Last name 

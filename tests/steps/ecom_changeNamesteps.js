@@ -12,7 +12,6 @@ const { Before, After, Given, When, Then } = createBdd(test);
  });
 // 1. Missing step definition for "tests\features\ecomic_changeName.feature:13:5"
 When('I click on Edit your account information', async ({page, ecomChangePage}) => {
-   await page.pause();
    await ecomChangePage.clickOnEditMyAccount();
 });
 

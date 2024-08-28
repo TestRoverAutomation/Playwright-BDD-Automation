@@ -56,11 +56,19 @@ export default defineConfig({
     // },
     {
       name: 'user',
+      grep: /@changename/,
       use: { ...devices['Desktop Chrome'],
          storageState: 'playwright/.auth/user2.json' 
       },
        dependencies: ['usersetup'],
     },
+      {
+        name: 'LoginTest',
+        grep: /@login/,
+        use: { ...devices['Desktop Chrome'],
+        // storageState: 'playwright/.auth/user.json',
+      },
+      },
     // {
     //   name: 'test',
     //   use: { ...devices['Desktop Chrome'], storageState: 'playwright/.auth/test.json' },

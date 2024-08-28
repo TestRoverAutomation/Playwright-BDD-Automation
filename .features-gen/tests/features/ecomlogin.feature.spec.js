@@ -3,7 +3,7 @@ import { test } from "../../../tests/fixtures/fixture.js";
 
 test.describe("Verify login", () => {
 
-  test("Verify user is able to login with valid credentials", async ({ Given, ecomLoginPage, page, And, When, Then }) => {
+  test("Verify user is able to login with valid credentials", { tag: ["@login"] }, async ({ Given, ecomLoginPage, page, And, When, Then }) => {
     await Given("I navigate to \"https://ecommerce-playground.lambdatest.io/\"", null, { ecomLoginPage, page });
     await And("I click on My account", null, { ecomLoginPage });
     await And("I enter E-Mail Address \"pranav@testroverautomation.com\"", null, { ecomLoginPage });
@@ -14,7 +14,7 @@ test.describe("Verify login", () => {
 
   test.describe("Verify user is not able login with following credentails", () => {
 
-    test("Example #1", async ({ Given, ecomLoginPage, page, And, When, Then }) => {
+    test("Example #1", { tag: ["@login"] }, async ({ Given, ecomLoginPage, page, And, When, Then }) => {
       await Given("I navigate to \"https://ecommerce-playground.lambdatest.io/\"", null, { ecomLoginPage, page });
       await And("I click on My account", null, { ecomLoginPage });
       await And("I enter E-Mail Address \"xzy@gmail.com\"", null, { ecomLoginPage });
@@ -23,7 +23,7 @@ test.describe("Verify login", () => {
       await Then("I should verify user is not able to login and url contains \"route=account/login\"", null, { page });
     });
 
-    test("Example #2", async ({ Given, ecomLoginPage, page, And, When, Then }) => {
+    test("Example #2", { tag: ["@login"] }, async ({ Given, ecomLoginPage, page, And, When, Then }) => {
       await Given("I navigate to \"https://ecommerce-playground.lambdatest.io/\"", null, { ecomLoginPage, page });
       await And("I click on My account", null, { ecomLoginPage });
       await And("I enter E-Mail Address \"srk@testroverautomation.com\"", null, { ecomLoginPage });
@@ -32,7 +32,7 @@ test.describe("Verify login", () => {
       await Then("I should verify user is not able to login and url contains \"route=account/login\"", null, { page });
     });
 
-    test("Example #3", async ({ Given, ecomLoginPage, page, And, When, Then }) => {
+    test("Example #3", { tag: ["@login"] }, async ({ Given, ecomLoginPage, page, And, When, Then }) => {
       await Given("I navigate to \"https://ecommerce-playground.lambdatest.io/\"", null, { ecomLoginPage, page });
       await And("I click on My account", null, { ecomLoginPage });
       await And("I enter E-Mail Address \"testerrgreat@123.com\"", null, { ecomLoginPage });
@@ -41,7 +41,7 @@ test.describe("Verify login", () => {
       await Then("I should verify user is not able to login and url contains \"route=account/login\"", null, { page });
     });
 
-    test("Example #4", async ({ Given, ecomLoginPage, page, And, When, Then }) => {
+    test("Example #4", { tag: ["@login"] }, async ({ Given, ecomLoginPage, page, And, When, Then }) => {
       await Given("I navigate to \"https://ecommerce-playground.lambdatest.io/\"", null, { ecomLoginPage, page });
       await And("I click on My account", null, { ecomLoginPage });
       await And("I enter E-Mail Address \"srk_jawan@test.com\"", null, { ecomLoginPage });
@@ -50,7 +50,7 @@ test.describe("Verify login", () => {
       await Then("I should verify user is not able to login and url contains \"route=account/login\"", null, { page });
     });
 
-    test("Example #5", async ({ Given, ecomLoginPage, page, And, When, Then }) => {
+    test("Example #5", { tag: ["@login"] }, async ({ Given, ecomLoginPage, page, And, When, Then }) => {
       await Given("I navigate to \"https://ecommerce-playground.lambdatest.io/\"", null, { ecomLoginPage, page });
       await And("I click on My account", null, { ecomLoginPage });
       await And("I enter E-Mail Address \"SalmanDabang@gmail.com\"", null, { ecomLoginPage });
@@ -69,14 +69,13 @@ test.use({
   $test: ({}, use) => use(test),
   $uri: ({}, use) => use("tests\\features\\ecomlogin.feature"),
   $bddFileMeta: ({}, use) => use(bddFileMeta),
-  $scenarioHookFixtures: ({ browser }, use) => use({ browser }),
 });
 
 const bddFileMeta = {
-  "Verify user is able to login with valid credentials": {"pickleLocation":"7:2"},
-  "Verify user is not able login with following credentails|Example #1": {"pickleLocation":"24:3"},
-  "Verify user is not able login with following credentails|Example #2": {"pickleLocation":"25:3"},
-  "Verify user is not able login with following credentails|Example #3": {"pickleLocation":"26:3"},
-  "Verify user is not able login with following credentails|Example #4": {"pickleLocation":"27:3"},
-  "Verify user is not able login with following credentails|Example #5": {"pickleLocation":"28:3"},
+  "Verify user is able to login with valid credentials": {"pickleLocation":"8:2","tags":["@login"]},
+  "Verify user is not able login with following credentails|Example #1": {"pickleLocation":"25:3","tags":["@login"]},
+  "Verify user is not able login with following credentails|Example #2": {"pickleLocation":"26:3","tags":["@login"]},
+  "Verify user is not able login with following credentails|Example #3": {"pickleLocation":"27:3","tags":["@login"]},
+  "Verify user is not able login with following credentails|Example #4": {"pickleLocation":"28:3","tags":["@login"]},
+  "Verify user is not able login with following credentails|Example #5": {"pickleLocation":"29:3","tags":["@login"]},
 };
