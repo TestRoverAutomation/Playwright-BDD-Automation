@@ -4,8 +4,12 @@ import { expect } from '@playwright/test';
 
 const { Before, After, Given, When, Then } = createBdd(test);
 
+import * as fs from 'fs';
+import * as path from 'path';
+
  Given('I navigate to my account {string}', async ({page}, url) => {
-   const cookies = require('../../playwright/.auth/user2.json');
+   const authPath = path.resolve(__dirname, '../../playwright/.auth/user2.json');
+   const cookies = JSON.parse(fs.readFileSync(authPath, 'utf-8'));
    const cookiesArray = cookies.cookies;
    await page.context().addCookies(cookiesArray);
    await page.goto(url);

@@ -1,59 +1,79 @@
-﻿# Playwright-BDD-Automation
+# Playwright-BDD-Automation 🚀
 
 ## Overview
+Welcome to the **Playwright-BDD-Automation** repository! This is a modern, TypeScript-based testing framework engineered to demonstrate best practices combining **Playwright**, **Playwright BDD**, and the **Page Object Model (POM)** design pattern. It is intentionally documented to serve as an excellent learning resource for developers and QA engineers looking to build robust automation suites.
 
-Welcome to the **Playwright-BDD-Automation** repository! This project leverages the power of [Playwright](https://playwright.dev/), [Playwright BDD](https://github.com/playwright-community/playwright-bdd), and the Showcasing BDD framework to create a robust, scalable automation suite. The framework follows the Page Object Model (POM) design pattern and utilizes fixtures to manage test data and state, ensuring clean and maintainable test code.
+---
 
-## Features
+## 📖 Educational Guide for Learners
 
-- **Playwright Integration**: Harness the capabilities of Playwright for high-performance browser automation.
-- **BDD Framework**: Implement Behavior-Driven Development (BDD) with Playwright BDD for clear and human-readable test scenarios.
-- **Page Object Model (POM)**: Maintainable and reusable code structure using the Page Object Model.
-- **Fixtures Support**: Simplified setup and teardown with fixtures for better test isolation and reusability.
-- **Parallel Test Execution**: Run tests in parallel to save time and get faster feedback.
-- **Retry Mechanism**: Automatically retry failed tests to increase the reliability of the test suite.
-- **Comprehensive Reporting**: Generate detailed HTML reports for test execution results.
-- **Cross-Browser Testing**: Test on different browsers and devices to ensure cross-browser compatibility.
-- **Environment Configuration**: Load environment-specific settings seamlessly using dotenv.
+Understanding how BDD connects with Playwright is key to mastering this framework. Here is a step-by-step breakdown of how all the pieces fit together:
 
-## Installation
+### 1. Behavior-Driven Development (BDD)
+This framework uses Gherkin syntax (`.feature` files) to define scenarios in human-readable plain text.
+- **Location**: `tests/features/*.feature`
+- **Example Scenario**:
+  ```gherkin
+  Scenario: Verify user is able to login with valid credentials
+    Given I navigate to "https://ecommerce-playground.lambdatest.io/"
+    And I click on My account
+    When I click on submit button
+  ```
 
-To get started with this project, follow the steps below:
+### 2. Step Definitions
+Step definitions bridge the gap between English Gherkin statements and automated code. The library `playwright-bdd` maps matching text strings inside `Given`, `When`, and `Then` steps directly to TypeScript execution blocks.
+- **Location**: `tests/steps/*steps.ts`
+
+### 3. Page Object Model (POM)
+To prevent step definitions from getting cluttered with selector lookups and low-level browser actions, we use the Page Object Model.
+- **Location**: `tests/pages/*Obj.ts`
+- Each web page has its own class encapsulating page elements (`Locator`) and behaviors (e.g. `enterEmailAddress()`).
+- Centralizing selectors here means if the website UI changes, we only need to update the selector in **one place**!
+
+### 4. Custom Fixtures
+Playwright's fixture system is used to inject initialized page objects directly into steps. This keeps setup/teardown automatic and isolated between tests.
+- **Location**: `tests/fixtures/fixture.ts`
+- Instead of manually importing and instantiating page objects inside every step, we define them in `fixture.ts` so they are available automatically:
+  ```typescript
+  Given('I click on My account', async ({ ecomLoginPage }) => {
+    await ecomLoginPage.clickOnMyAccount();
+  });
+  ```
+
+### 5. Multi-Environment Handling
+We use `dotenv` to load environment configurations seamlessly from `.env` files located in the `env` directory:
+- `dev`: `env/.env.dev`
+- `qa`: `env/.env.qa`
+- `prod`: `env/.env.prod`
+The appropriate file is loaded dynamically based on the `ENV` system variable.
+
+---
+
+## 🛠️ Installation
+
+To set up the project locally:
 
 1. **Clone the repository**:
-   ```sh
+   ```bash
    git clone https://github.com/TestRoverAutomation/Playwright-BDD-Automation.git
-   cd playwright-bdd-automation
-2. **Install dependencies:**:
-    ```sh
-    npm install
-3. **Set environment variables: Create .env files for different environments in the env directory.**
+   cd Playwright-BDD-Automation
+   ```
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-### Configuration
+---
 
-This repository is configured to handle different test setups and environments, supporting various browsers and devices. Below are some key configurations:
+## 🏃 Running Tests & Scripts
 
-Playwright Configuration (playwright.config.ts)
-The configuration supports parallel test execution, retries on CI, HTML reporting, trace, screenshot, and video recording on first retries. Environment-specific settings are managed using dotenv.
+This framework is configured with cross-platform scripts that run perfectly on macOS, Linux, and Windows:
 
-Project Setup
-The configuration includes multiple projects for different testing needs:
-
-- Admin Setup: Authentication setup for admin users.
-- User Setup: Authentication setup for regular users.
-- Test Setup: General authentication setup for test users.
-- Admin Tests: Runs admin-specific tests using predefined storage state.
-- User Tests: Executes user-specific tests with respective storage state.
-- Test User Tests: Conducts tests for general users with appropriate storage state.
-
-### Scripts
-The following scripts are available in the package.json file:
-
-- Run all tests: npm test
-- Generate BDD steps: npm run bddgen
-- Clean generated files: npm run clean
-- Run Playwright tests: npm run playwright-test
-- Run tests in QA environment: npm run qa-env
-- Run tests in development environment: npm run dev-env
-
-- Run tests in production environment: npm run prod-env
+| Script Name | Command | Description |
+| :--- | :--- | :--- |
+| `npm run clean` | `npx rimraf .features-gen` | Deletes generated BDD test files |
+| `npm run bddgen` | `npx bddgen` | Compiles Cucumber `.feature` files into executable Playwright tests |
+| `npm run dev-env` | Runs dev tests | Executes step definitions using the **development** environment variables |
+| `npm run qa-env` | Runs QA tests | Executes step definitions using the **QA** environment variables |
+| `npm run prod-env` | Runs prod tests | Executes step definitions using the **production** environment variables |
+| `npm test` | Clean, generate, & run | Performs full generation and runs playwright tests |

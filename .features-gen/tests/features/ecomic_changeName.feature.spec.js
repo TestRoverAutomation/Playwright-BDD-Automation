@@ -1,5 +1,5 @@
-/** Generated from: tests\features\ecomic_changeName.feature */
-import { test } from "../../../tests/fixtures/fixture.js";
+/** Generated from: tests/features/ecomic_changeName.feature */
+import { test } from "../../../tests/fixtures/fixture.ts";
 
 test.describe("Change First Name and Last name", () => {
 
@@ -19,10 +19,9 @@ test.describe("Change First Name and Last name", () => {
 
 test.use({
   $test: ({}, use) => use(test),
-  $uri: ({}, use) => use("tests\\features\\ecomic_changeName.feature"),
+  $uri: ({}, use) => use("tests/features/ecomic_changeName.feature"),
   $bddFileMeta: ({}, use) => use(bddFileMeta),
   $scenarioHookFixtures: ({ page }, use) => use({ page }),
-  $workerHookFixtures: [({ browser }, use) => use({ browser }), { scope: "worker" }],
 });
 
 const bddFileMeta = {

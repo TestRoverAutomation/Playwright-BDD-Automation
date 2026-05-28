@@ -1,5 +1,5 @@
-/** Generated from: tests\features\ecomlogin.feature */
-import { test } from "../../../tests/fixtures/fixture.js";
+/** Generated from: tests/features/ecomlogin.feature */
+import { test } from "../../../tests/fixtures/fixture.ts";
 
 test.describe("Verify login", () => {
 
@@ -67,10 +67,9 @@ test.describe("Verify login", () => {
 
 test.use({
   $test: ({}, use) => use(test),
-  $uri: ({}, use) => use("tests\\features\\ecomlogin.feature"),
+  $uri: ({}, use) => use("tests/features/ecomlogin.feature"),
   $bddFileMeta: ({}, use) => use(bddFileMeta),
   $scenarioHookFixtures: ({ page }, use) => use({ page }),
-  $workerHookFixtures: [({ browser }, use) => use({ browser }), { scope: "worker" }],
 });
 
 const bddFileMeta = {
